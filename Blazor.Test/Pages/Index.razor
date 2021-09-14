@@ -1,0 +1,66 @@
+﻿@page "/"
+@inherits IndexBase
+
+<EditForm Model="Employee" OnSubmit="HandleFormSubmit">
+    <div>
+        <label class="col-sm-2 col-form-label">
+            Name
+        </label>
+        <InputText class="form-control" @bind-Value="Employee.Name" @bind-Value:format="dd/MM/yyyy" />
+    </div>
+    <div>
+        <label class="col-sm-2 col-form-label">
+            Descriptions
+        </label>
+        <InputTextArea class="form-control" @bind-Value="Employee.Description"/>
+    </div>
+    <div>
+        <label class="col-sm-2 col-form-label">
+            DateTime1
+        </label>
+        <InputDate class="form-control" @bind-Value="Employee.DateTime1" @bind-Value:format="dd/MM/yyyy" />
+    </div>
+    <div>
+        <label class="col-sm-2 col-form-label">
+            DateTime2
+        </label>
+        <InputDate class="form-control" @bind-Value="Employee.DateTime2" @bind-Value:format="dd/MM/yyyy" />
+    </div>
+    <div>
+        <button class="btn btn-primary" type="button" @onclick="AddEmployee">Add</button>
+        <button class="btn btn-primary" type="submit">Submit</button>
+        <button class="btn btn-info" type="button" @onclick="UpdateLocalStorage">Set Storage</button>
+    </div>
+</EditForm>
+<div>
+    @if(ErrorMessage.Length > 0) 
+    {
+        <h1 class="alert alert-danger">
+            @ErrorMessage
+        </h1>
+    }
+</div>
+<div>
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <th>Name</th>
+            <th>Descriptions</th>
+            <th>Date1</th>
+            <th>Date2</th>
+            <th>Action</th>
+        </tr>
+        @if (Employees.Count > 0)
+        {
+            foreach (Employee emp in Employees)
+            {
+                <tr>
+                    <td>@emp.Name</td>
+                    <td>@emp.Description</td>
+                    <td>@emp.DateTime1</td>
+                    <td>@emp.DateTime2</td>
+                    <td><button @onclick="args => DeleteEmployeeRow(emp.Id)">Delete</button></td>
+                </tr>
+            }
+        }
+    </table>
+</div>
