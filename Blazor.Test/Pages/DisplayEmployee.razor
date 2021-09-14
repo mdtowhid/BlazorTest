@@ -1,0 +1,29 @@
+﻿@page "/details/{id}"
+@page "/details"
+@inherits DisplayEmployeeBase
+
+@if (Employee == null)
+{
+    <h1>NULLLLLLLLLL</h1>
+}
+else
+{
+    <div class="card">
+        <div class="card-header">@Employee.Name</div>
+        <div class="card-body">
+            @Employee.Description
+        </div>
+        <div class="card-footer">
+            @Employee.DateTime1
+        </div>
+    </div>
+}
+@*<div class="jumbotron">
+        <h1 class="display-1">
+            @Id
+            @if (Employee != null)
+            {
+                @Employee.Name.ToUpper()
+            }
+        </h1>
+    </div>*@

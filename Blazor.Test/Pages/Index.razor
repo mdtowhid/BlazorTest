@@ -47,6 +47,9 @@
             <th>Descriptions</th>
             <th>Date1</th>
             <th>Date2</th>
+            <th>
+                Navigations
+            </th>
             <th>Action</th>
         </tr>
         @if (Employees.Count > 0)
@@ -58,6 +61,11 @@
                     <td>@emp.Description</td>
                     <td>@emp.DateTime1</td>
                     <td>@emp.DateTime2</td>
+                    <td>
+                        <NavLink class="" href="@($"details/{emp.Id}")">
+                            <span class="oi oi-person" aria-hidden="true"></span> View
+                        </NavLink>
+                    </td>
                     <td><button @onclick="args => DeleteEmployeeRow(emp.Id)">Delete</button></td>
                 </tr>
             }
